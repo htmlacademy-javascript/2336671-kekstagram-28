@@ -24,14 +24,12 @@ function isPolindrom (string) {
 function stringToNumber (string) {
   const spacelessString = string.replaceAll(' ', '');
   let numberString = '';
-  console.log(numberString);
   for (let i = 0; i < spacelessString.length; i++) {
     const number = Number(spacelessString.at(i));
     if (!isNaN(number)) {
       numberString += String(number);
     }
   }
-  console.log(numberString);
   return Number(numberString);
 }
 
@@ -40,12 +38,12 @@ function addToString (string, minLength, extend) {
     return string;
   }
   if (extend.length >= minLength) {
-    let splitExtend = extend.slice(0, minLength - string.length);
+    const splitExtend = extend.slice(0, minLength - string.length);
     return splitExtend + string;
   }
   let newString = string;
   while (newString.length < minLength) {
-    let splitExtend = extend.slice(0, minLength - newString.length);
+    const splitExtend = extend.slice(0, minLength - newString.length);
     newString = splitExtend + newString;
   }
   return newString;

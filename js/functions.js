@@ -30,6 +30,9 @@ function stringToNumber (string) {
       numberString += String(number);
     }
   }
+  if (numberString === ''){
+    return NaN
+  }
   return Number(numberString);
 }
 

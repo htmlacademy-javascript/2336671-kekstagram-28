@@ -33,7 +33,14 @@ function stringToNumber (string) {
   return Number(numberString);
 }
 
-function addToString (string, minLength, extend) {
+function numberToNumber (number) {
+  const removeDots = String(number).replaceAll('.', '');
+  const removeMinus = removeDots.replaceAll('-', '');
+  return Number(removeMinus);
+}
+
+
+function extendString (string, minLength, extend) {
   if (string.length >= minLength) {
     return string;
   }

@@ -13,8 +13,8 @@ function checkStringLength (string, number) {
 
 function isPolindrom (string) {
   let reverseString = '';
-  let lowerCaseString = string.toLowerCase();
-  let spacelessString = lowerCaseString.replaceAll(' ', '');
+  const lowerCaseString = string.toLowerCase();
+  const spacelessString = lowerCaseString.replaceAll(' ', '');
   for (let i = spacelessString.length - 1; i >= 0; i--) {
     reverseString += spacelessString.at(i);
   }
@@ -22,11 +22,11 @@ function isPolindrom (string) {
 }
 
 function stringToNumber (string) {
-  let spacelessString = string.replaceAll(' ', '');
+  const spacelessString = string.replaceAll(' ', '');
   let numberString = '';
   console.log(numberString);
   for (let i = 0; i < spacelessString.length; i++) {
-    let number = Number(spacelessString.at(i));
+    const number = Number(spacelessString.at(i));
     if (!isNaN(number)) {
       numberString += String(number);
     }
@@ -37,7 +37,16 @@ function stringToNumber (string) {
 
 function addToString (string, minLength, extend) {
   if (string.length >= minLength) {
-    return string
+    return string;
   }
-  while
+  if (extend.length >= minLength) {
+    let splitExtend = extend.slice(0, minLength - string.length);
+    return splitExtend + string;
+  }
+  let newString = string;
+  while (newString.length < minLength) {
+    let splitExtend = extend.slice(0, minLength - newString.length);
+    newString = splitExtend + newString;
+  }
+  return newString;
 }

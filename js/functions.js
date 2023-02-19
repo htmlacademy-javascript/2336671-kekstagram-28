@@ -2,6 +2,8 @@ function checkStringLength (string, number) {
   return string.length <= number;
 }
 
+checkStringLength('проверяемая строка', 20);
+
 /* function isPolindrom (string) {
   let lowerCaseString = string.toLowerCase();
   let stringWoSpaces = lowerCaseString.replaceAll(' ','')
@@ -21,6 +23,8 @@ function isPolindrom (string) {
   return spacelessString === reverseString;
 }
 
+isPolindrom('Лёша на полке клопа нашёл ');
+
 function stringToNumber (string) {
   const spacelessString = string.replaceAll(' ', '');
   let numberString = '';
@@ -31,10 +35,12 @@ function stringToNumber (string) {
     }
   }
   if (numberString === ''){
-    return NaN
+    return NaN;
   }
   return Number(numberString);
 }
+
+stringToNumber('1 кефир, 0.5 батона');
 
 function numberToNumber (number) {
   const removeDots = String(number).replaceAll('.', '');
@@ -42,6 +48,7 @@ function numberToNumber (number) {
   return Number(removeMinus);
 }
 
+numberToNumber(-20.23);
 
 function extendString (string, minLength, extend) {
   if (string.length >= minLength) {
@@ -58,3 +65,5 @@ function extendString (string, minLength, extend) {
   }
   return newString;
 }
+
+extendString('q', 4, 'w');

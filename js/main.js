@@ -70,5 +70,6 @@ const createPhotoPost = () => ({
   comments: Array.from({length: getRandomInteger(0, 10)}, generateComment)
 });
 
-const photoPosts = Array.from({length: 25}, createPhotoPost);
+const photoPosts = () => Array.from({length: 25}, createPhotoPost);
 
+photoPosts();

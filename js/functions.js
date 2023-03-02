@@ -26,6 +26,10 @@ function isPolindrom (string) {
 isPolindrom('Лёша на полке клопа нашёл ');
 
 function stringToNumber (string) {
+  if (typeof string === 'number') {
+    string = String(string);
+  }
+
   const spacelessString = string.replaceAll(' ', '');
   let numberString = '';
   for (let i = 0; i < spacelessString.length; i++) {
@@ -42,13 +46,13 @@ function stringToNumber (string) {
 
 stringToNumber('1 кефир, 0.5 батона');
 
-function numberToNumber (number) {
-  const removeDots = String(number).replaceAll('.', '');
-  const removeMinus = removeDots.replaceAll('-', '');
-  return Number(removeMinus);
-}
+// function numberToNumber (number) {
+//   const removeDots = String(number).replaceAll('.', '');
+//   const removeMinus = removeDots.replaceAll('-', '');
+//   return Number(removeMinus);
+// }
 
-numberToNumber(-20.23);
+// numberToNumber(-20.23);
 
 function extendString (string, minLength, extend) {
   if (string.length >= minLength) {

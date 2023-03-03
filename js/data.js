@@ -30,13 +30,18 @@ const DESCRIPTIONS = [
 ];
 
 const MAX_POSTS = 25;
+const MAX_AVATARS = 6;
+const MIN_LIKES = 15;
+const MAX_LIKES = 200;
+const MAX_COMMENTS_ID = 1000;
+const MAX_COMMENTS = 10;
 
-const randomCommentId = createRandomIdFromRangeGenerator(1, 1000);
+const randomCommentId = createRandomIdFromRangeGenerator(1, MAX_COMMENTS_ID);
 
 const generateComment = () => ({
   id: randomCommentId(),
-  avatar: `img/avatar-${ getRandomInteger(1, 6) }.svg`,
-  message: MESSAGES[getRandomInteger(0, MESSAGES.length - 1)],
+  avatar: `img/avatar-${ getRandomInteger(1, MAX_AVATARS) }.svg`,
+  message: `${MESSAGES[getRandomInteger(0, MESSAGES.length - 1)] } ${ MESSAGES[getRandomInteger(0, MESSAGES.length - 1)]}`,
   name: NAMES[getRandomInteger(0, NAMES.length - 1)]
 });
 
@@ -47,8 +52,8 @@ const createPhotoPost = () => ({
   id: randomPostId(),
   url: `photos/${ randomUrlId()}.jpg`,
   description: DESCRIPTIONS[getRandomInteger(0, DESCRIPTIONS.length - 1)],
-  likes: getRandomInteger(15, 200),
-  comments: Array.from({length: getRandomInteger(0, 10)}, generateComment)
+  likes: getRandomInteger(MIN_LIKES, MAX_LIKES),
+  comments: Array.from({length: getRandomInteger(0, MAX_COMMENTS)}, generateComment)
 });
 
 export const photoPosts = () => Array.from({length: MAX_POSTS}, createPhotoPost);

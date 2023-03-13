@@ -1,3 +1,2 @@
-import {photoPosts} from './data.js';
-
-photoPosts();
+import './data.js';
+import './randomPhotos.js';

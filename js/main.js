@@ -1,2 +1,3 @@
 import './data.js';
-import './randomPhotos.js';
+import './random-photos.js';
+import './popup.js';

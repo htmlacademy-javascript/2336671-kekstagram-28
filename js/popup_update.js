@@ -10,13 +10,17 @@ const createComment = (object) => {
   return newComment;
 };
 
+const loadComments = () => {
+};
+
 const updateBigPicture = (object) => {
   bigPicture.querySelector('.big-picture__img img').src = object.url;
   bigPicture.querySelector('.social__caption').textContent = object.description;
   bigPicture.querySelector('.likes-count').textContent = object.likes;
   bigPicture.querySelector('.comments-count').textContent = object.comments.length;
 
-  commentsList.replaceChildren(...object.comments.map(createComment));
+  const commentsArray = object.comments.map(createComment);
+  commentsList.replaceChildren(...commentsArray);
 };
 
-export {updateBigPicture};
+export {updateBigPicture, loadComments};

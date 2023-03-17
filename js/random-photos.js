@@ -9,10 +9,16 @@ const randomPhotosFragment = document.createDocumentFragment();
 
 randomPhotos.forEach((photo) => {
   const pictureElement = picturesTemplate.cloneNode(true);
-  pictureElement.querySelector('.picture__img').src = photo.url;
+  const pictureImg = pictureElement.querySelector('.picture__img');
+  pictureImg.src = photo.url;
+  pictureImg.setAttribute('data-id', photo.id);
   pictureElement.querySelector('.picture__comments').textContent = photo.comments.length;
   pictureElement.querySelector('.picture__likes').textContent = photo.likes;
   randomPhotosFragment.append(pictureElement);
 });
 
 picturesList.append(randomPhotosFragment);
+
+const getPhotoObject = (id) => randomPhotos.find((obj) => obj.id === Number(id));
+
+export {picturesList, getPhotoObject};

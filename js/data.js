@@ -33,7 +33,7 @@ const MAX_POSTS = 25;
 const MAX_AVATARS = 6;
 const MIN_LIKES = 15;
 const MAX_LIKES = 200;
-const MAX_COMMENTS_ID = 1000;
+const MAX_COMMENTS_ID = 10;
 const MAX_COMMENTS = 10;
 
 const randomCommentId = createRandomIdFromRangeGenerator(1, MAX_COMMENTS_ID);

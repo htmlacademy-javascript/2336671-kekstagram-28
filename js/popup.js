@@ -1,10 +1,10 @@
 import {picturesList, getPhotoObject } from './random-photos.js';
-import {updateBigPicture, loadComments} from './popup_update.js';
+import {updateBigPicture, loadNewComments} from './popup_update.js';
 
 const picturePopup = document.querySelector('.big-picture');
 const closePicturePopup = picturePopup.querySelector('.big-picture__cancel');
 const body = document.querySelector('body');
-const loadCommentsButton = picturePopup.querySelector('.social__comments-loader');
+const loadCommentsButton = picturePopup.querySelector('.comments-loader');
 
 const isEscape = (evt) => {
   if (evt.key === 'Escape') {
@@ -19,13 +19,15 @@ const isClickOutside = (evt) => {
 };
 
 const onLoadCommentClick = () => {
-  loadComments();
+  loadNewComments();
 };
 
 const openBigPhoto = (photoObject) => {
   picturePopup.classList.remove('hidden');
   body.classList.add('modal-open');
+
   updateBigPicture (photoObject);
+
   document.addEventListener('keydown', isEscape);
   body.addEventListener('click', isClickOutside);
   loadCommentsButton.addEventListener('click', onLoadCommentClick);

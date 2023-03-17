@@ -33,7 +33,7 @@ const MAX_POSTS = 25;
 const MAX_AVATARS = 6;
 const MIN_LIKES = 15;
 const MAX_LIKES = 200;
-const MAX_COMMENTS_ID = 10;
+const MAX_COMMENTS_ID = 100;
 const MAX_COMMENTS = 10;
 
 const randomCommentId = createRandomIdFromRangeGenerator(1, MAX_COMMENTS_ID);
@@ -41,7 +41,7 @@ const randomCommentId = createRandomIdFromRangeGenerator(1, MAX_COMMENTS_ID);
 const generateComment = () => ({
   id: randomCommentId(),
   avatar: `img/avatar-${ getRandomInteger(1, MAX_AVATARS) }.svg`,
-  message: `${MESSAGES[getRandomInteger(0, MESSAGES.length - 1)] } ${ MESSAGES[getRandomInteger(0, MESSAGES.length - 1)]}`,
+  message: `${MESSAGES[getRandomInteger(0, MESSAGES.length - 1)]} ${ MESSAGES[getRandomInteger(0, MESSAGES.length - 1)]}`,
   name: NAMES[getRandomInteger(0, NAMES.length - 1)]
 });
 

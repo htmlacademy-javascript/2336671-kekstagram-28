@@ -11,6 +11,7 @@ randomPhotos.forEach((photo) => {
   const pictureElement = picturesTemplate.cloneNode(true);
   const pictureImg = pictureElement.querySelector('.picture__img');
   pictureImg.src = photo.url;
+  pictureImg.alt = photo.description;
   pictureImg.setAttribute('data-id', photo.id);
   pictureElement.querySelector('.picture__comments').textContent = photo.comments.length;
   pictureElement.querySelector('.picture__likes').textContent = photo.likes;

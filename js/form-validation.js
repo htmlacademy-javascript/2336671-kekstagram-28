@@ -9,10 +9,6 @@ const pristineConfig = {
 
 const pristine = new Pristine(imageUploadForm, pristineConfig, true);
 
-/**
- * @param {string} message
- * @param {(tags: string[]) => boolean} validate
- */
 const addHashtagValidator = (message, validate) => {
   pristine.addValidator(textHashtags, (value) => {
     const tags = value.toLowerCase().split(' ').filter(Boolean);

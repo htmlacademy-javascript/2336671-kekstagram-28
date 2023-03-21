@@ -6,8 +6,10 @@ const imageUploadOverlay = imageUploadForm.querySelector('.img-upload__overlay')
 const imageUploadPreview = imageUploadForm.querySelector('.img-upload__preview img');
 const imageUploadCancel = imageUploadForm.querySelector('.img-upload__cancel');
 
-const isEscape = (evt) => {
-  if (evt.key === 'Escape') {
+const onDocumetnKeydown = (evt) => {
+  const isEscapeKey = evt.key.startsWith('Esc');
+  const isTextField = evt.target.matches('input[type="text"], textarea');
+  if (isEscapeKey && !isTextField) {
     imageUploadCancel.click();
   }
 };
@@ -15,7 +17,7 @@ const isEscape = (evt) => {
 const openUploadForm = () => {
   imageUploadOverlay.classList.remove('hidden');
   document.querySelector('body').classList.add('modal-open');
-  document.addEventListener('keydown', isEscape);
+  document.addEventListener('keydown', onDocumetnKeydown);
   const [image] = uploadFile.files;
   imageUploadPreview.src = URL.createObjectURL(image);
   validateForm();

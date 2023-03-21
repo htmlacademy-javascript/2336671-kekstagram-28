@@ -1,4 +1,4 @@
-import { validateForm, onFormReset, onSubmit } from './form-validation.js';
+import { addFormValidators, onFormReset, onSubmit } from './form-validation.js';
 
 const imageUploadForm = document.querySelector('.img-upload__form');
 const uploadFile = imageUploadForm.querySelector('#upload-file');
@@ -20,7 +20,7 @@ const openUploadForm = () => {
   document.addEventListener('keydown', onDocumetnKeydown);
   const [image] = uploadFile.files;
   imageUploadPreview.src = URL.createObjectURL(image);
-  validateForm();
+  addFormValidators();
 };
 
 const closeUploadForm = () => {
@@ -28,7 +28,7 @@ const closeUploadForm = () => {
   document.querySelector('body').classList.remove('modal-open');
 };
 
-imageUploadForm.addEventListener('change', openUploadForm);
+uploadFile.addEventListener('change', openUploadForm);
 imageUploadCancel.addEventListener('click', closeUploadForm);
 imageUploadForm.addEventListener('submit', onSubmit);
 imageUploadForm.addEventListener('reset', onFormReset);

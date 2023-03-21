@@ -46,9 +46,9 @@ const onFormReset = () => {
   pristine.reset();
 };
 
-const validateForm = () => {
+const addFormValidators = () => {
   validateHastag();
   validateDescription();
 };
 
-export {validateForm, onFormReset, onSubmit};
+export {addFormValidators, onFormReset, onSubmit};

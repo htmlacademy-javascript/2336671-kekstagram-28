@@ -57,8 +57,6 @@ const onSubmit = (evt) => {
   const isValid = pristine.validate();
   if (isValid) {
     imageUploadForm.submit();
-  } else {
-    console.log(pristine.getErrors());
   }
 };
 

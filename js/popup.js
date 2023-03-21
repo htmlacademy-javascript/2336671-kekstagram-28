@@ -36,6 +36,9 @@ const openBigPhoto = (photoObject) => {
 const closeBigPhoto = () => {
   picturePopup.classList.add('hidden');
   body.classList.remove('modal-open');
+  document.removeEventListener('keydown', isEscape);
+  body.removeEventListener('click', isClickOutside);
+  loadCommentsButton.removeEventListener('click', onLoadCommentClick);
 };
 
 const onPhotoClick = (evt) => {

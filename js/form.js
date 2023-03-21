@@ -38,7 +38,7 @@ function closeUploadForm() {
 
 const addHashtagValidator = (message, validate) => {
   pristine.addValidator(textHashtags, (value) => {
-    const tags = value.split(' ').filter(Boolean);
+    const tags = value.toLowerCase().split(' ').filter(Boolean);
     return validate(tags);
   }, message, 1, true);
 };
@@ -58,7 +58,7 @@ const onSubmit = (evt) => {
   if (isValid) {
     imageUploadForm.submit();
   } else {
-    //console.log(pristine.getErrors());
+    console.log(pristine.getErrors());
   }
 };
 

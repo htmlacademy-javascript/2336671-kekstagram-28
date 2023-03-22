@@ -1,7 +1,9 @@
+import {setDefaultScale} from './image-scale.js';
+import {hideSlider} from './effects.js';
+
 const imageUploadForm = document.querySelector('.img-upload__form');
 const uploadFile = imageUploadForm.querySelector('#upload-file');
 const imageUploadOverlay = imageUploadForm.querySelector('.img-upload__overlay');
-const imageUploadPreview = imageUploadForm.querySelector('.img-upload__preview img');
 const imageUploadCancel = imageUploadForm.querySelector('.img-upload__cancel');
 const textHashtags = imageUploadForm.querySelector('.text__hashtags');
 const textDescription = imageUploadForm.querySelector('.text__description');
@@ -27,8 +29,8 @@ const openUploadForm = () => {
   imageUploadOverlay.classList.remove('hidden');
   document.querySelector('body').classList.add('modal-open');
   document.addEventListener('keydown', onDocumetnKeydown);
-  const [image] = uploadFile.files;
-  imageUploadPreview.src = URL.createObjectURL(image);
+  setDefaultScale();
+  hideSlider();
 };
 
 function closeUploadForm() {

@@ -1,5 +1,5 @@
 import {setDefaultScale} from './image-scale.js';
-import {hideSlider} from './effects.js';
+import {resetEffects} from './effects.js';
 
 const imageUploadForm = document.querySelector('.img-upload__form');
 const uploadFile = imageUploadForm.querySelector('#upload-file');
@@ -30,7 +30,7 @@ const openUploadForm = () => {
   document.querySelector('body').classList.add('modal-open');
   document.addEventListener('keydown', onDocumetnKeydown);
   setDefaultScale();
-  hideSlider();
+  resetEffects();
 };
 
 function closeUploadForm() {

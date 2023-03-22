@@ -90,8 +90,10 @@ noUiSlider.create(slider, {
   }
 });
 
-const hideSlider = () => {
+const resetEffects = () => {
   effectLevel.classList.add('hidden');
+  imageUploadPreview.style.filter = '';
+  imageUploadPreview.classList = '';
 };
 
 const setEffect = (effect) => {
@@ -134,4 +136,4 @@ const onSliderChange = () => {
 effectList.addEventListener('change', onEffectClick);
 slider.noUiSlider.on('slide', onSliderChange);
 
-export {hideSlider};
+export {resetEffects};

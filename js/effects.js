@@ -128,16 +128,7 @@ const onEffectClick = (evt) => {
 
 const onSliderChange = () => {
   effectLevelValue.value = slider.noUiSlider.get();
-
-  if (currentEffect === 'marvin') {
-    imageUploadPreview.style.filter = `${effects[currentEffect].filter}(${effectLevelValue.value}%)`;
-    return;
-  }
-  if (currentEffect === 'phobos') {
-    imageUploadPreview.style.filter = `${effects[currentEffect].filter}(${effectLevelValue.value}px)`;
-    return;
-  }
-  imageUploadPreview.style.filter = `${effects[currentEffect].filter}(${effectLevelValue.value})`;
+  imageUploadPreview.style.filter = `${effects[currentEffect].filter}(${effectLevelValue.value}${effects[currentEffect].unit})`;
 };
 
 effectList.addEventListener('change', onEffectClick);

@@ -7,13 +7,9 @@ const SCALE_STEP = 25;
 const MIN_SCALE = 25;
 const MAX_SCALE = 100;
 
-const setDefaultScale = () => {
-  imageUploadPreview.style.transform = 'scale(1)';
-  scaleControlValue.value = '100%';
-};
-
 const setImageScale = (scaleValue) => {
-  imageUploadPreview.style.transform = `scale(${scaleValue / 100})`;
+  imageUploadPreview.style.setProperty('transform', `scale(${scaleValue / 100})`);
+  scaleControlValue.setAttribute('value', `${scaleValue}%`);
 };
 
 const onMinusClick = () => {
@@ -43,4 +39,4 @@ const onPlusClick = () => {
 scaleControlSmaller.addEventListener('click', onMinusClick);
 scaleControlBigger.addEventListener('click', onPlusClick);
 
-export {setDefaultScale};
+export {setImageScale};

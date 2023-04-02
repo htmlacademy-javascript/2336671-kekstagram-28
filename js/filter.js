@@ -15,7 +15,7 @@ const getRandomPhotos = (photos, count = 10) => {
 };
 
 const onFilterClick = (evt) => {
-  const selectedButton = event.target.closest('button');
+  const selectedButton = evt.target.closest('button');
 
   if (!selectedButton) {
     return;

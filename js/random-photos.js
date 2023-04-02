@@ -3,14 +3,14 @@ import {getData} from './api.js';
 
 const picturesTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const picturesListElement = document.querySelector('.pictures');
+const filtersElement = document.querySelector('.img-filters');
 
 let randomPhotos;
 
-getData().then((photos) => {
-
-  randomPhotos = photos;
+const renderPhotos = (photos) => {
   const randomPhotosFragment = document.createDocumentFragment();
-
+  const pictureslist = document.querySelectorAll('.picture');
+  pictureslist.forEach((element) => element.parentNode.removeChild(element));
   photos.forEach((photo) => {
     const pictureElement = picturesTemplate.cloneNode(true);
     const pictureImg = pictureElement.querySelector('.picture__img');
@@ -21,12 +21,20 @@ getData().then((photos) => {
     pictureElement.querySelector('.picture__likes').textContent = photo.likes;
     randomPhotosFragment.append(pictureElement);
   });
-  picturesListElement.append(randomPhotosFragment);
+  picturesListElement.appendChild(randomPhotosFragment);
+};
+
+getData().then((photos) => {
+  randomPhotos = photos;
+  renderPhotos(photos);
   return photos;
-}).catch((err) => {
-  showAlert(err.message);
-});
+}).then(() => {
+  filtersElement.classList.remove('img-filters--inactive');
+})
+  .catch((err) => {
+    showAlert(err.message);
+  });
 
 const getPhotoObject = (id) => randomPhotos.find((obj) => obj.id === Number(id));
 
-export {picturesListElement, getPhotoObject};
+export {picturesListElement, getPhotoObject, randomPhotos, renderPhotos};

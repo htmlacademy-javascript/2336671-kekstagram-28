@@ -21,27 +21,32 @@ const createRandomIdFromRangeGenerator = (min, max) => {
   };
 };
 
+const debounce = (callback, timeoutDelay = 500) => {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
 const showAlert = (message) => {
-  const alertContainer = document.createElement('div');
-  alertContainer.style.zIndex = '100';
-  alertContainer.style.position = 'absolute';
-  alertContainer.style.left = '0';
-  alertContainer.style.top = '0';
-  alertContainer.style.right = '0';
-  alertContainer.style.padding = '10px 3px';
-  alertContainer.style.fontSize = '14px';
-  alertContainer.style.textAlign = 'center';
-  alertContainer.style.backgroundColor = 'red';
+  const alertContainer = document.createElement('section');
+  alertContainer.classList.add('error');
 
-  alertContainer.textContent = message;
+  const inner = document.createElement('div');
+  inner.classList.add('error__inner');
 
+  const h2 = document.createElement('h2');
+  h2.classList.add('error__title');
+  h2.style.setProperty('line-height', '40px');
+
+  h2.textContent = message;
+  alertContainer.appendChild(inner);
+  inner.appendChild(h2);
   document.body.append(alertContainer);
-
-  setTimeout(() => {
-    alertContainer.remove();
-  }, 5000);
 };
 
 const isEscape = (evt) => evt.key === 'Escape';
 
-export { getRandomInteger, createRandomIdFromRangeGenerator, showAlert, isEscape };
+export { getRandomInteger, createRandomIdFromRangeGenerator, showAlert, isEscape, debounce };

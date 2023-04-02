@@ -4,6 +4,8 @@ import {sendData} from './api.js';
 import {isEscape} from './utils.js';
 import {showMessage} from './status-popup.js';
 
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
+
 const uploadFormElement = document.querySelector('.img-upload__form');
 const uploadFileElement = uploadFormElement.querySelector('#upload-file');
 const uploadOverlayElement = uploadFormElement.querySelector('.img-upload__overlay');
@@ -32,16 +34,20 @@ const onDocumentKeydown = (evt) => {
   }
 };
 
-const onUploadFileChange = (evt) => {
+const onUploadFileChange = () => {
   uploadOverlayElement.classList.remove('hidden');
   document.querySelector('body').classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
 
-  const data = evt.target.files.item(0);
-  imagePreviewElement.src = URL.createObjectURL(data);
+  const file = uploadFileElement.files[0];
+  const fileName = file.name.toLowerCase();
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
 
-  setImageScale(100);
-  resetEffects();
+  if (matches) {
+    imagePreviewElement.src = URL.createObjectURL(file);
+    setImageScale(100);
+    resetEffects();
+  }
 };
 
 const blockSubmitButton = () => {

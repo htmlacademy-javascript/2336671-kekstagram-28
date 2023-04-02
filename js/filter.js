@@ -2,6 +2,7 @@ import { randomPhotos, renderPhotos } from './random-photos.js';
 import { debounce } from './utils.js';
 
 const RANDOM_PHOTOS_COUNT = 10;
+const DEBOUNCE_DELAY = 500;
 
 const filtersFormElement = document.querySelector('.img-filters__form');
 const filterElements = filtersFormElement.querySelectorAll('.img-filters__button');
@@ -13,28 +14,31 @@ const getRandomPhotos = (photos, count = 10) => {
   return shuffled.slice(0, count);
 };
 
-const debounceDefault = debounce(() => renderPhotos(randomPhotos), 500);
-const debounceRandom = debounce(() => renderPhotos(getRandomPhotos(randomPhotos, RANDOM_PHOTOS_COUNT)), 500);
-const debounceCommented = debounce(() => renderPhotos(getMostCommentedPhotos(randomPhotos)), 500);
+const onFilterClick = (evt) => {
+  const selectedButton = event.target.closest('button');
 
-const toggleTab = (target) => {
+  if (!selectedButton) {
+    return;
+  }
+
   filterElements.forEach((element) => element.classList.remove('img-filters__button--active'));
-  target.classList.add('img-filters__button--active');
+  evt.target.classList.add('img-filters__button--active');
+
+  selectedButton.classList.add('img-filters__button--active');
+  selectedButton.dispatchEvent(new Event('change'));
 };
 
-const setFilterClick = (evt) => {
-  if (evt.target.id === 'filter-default') {
-    toggleTab(evt.target);
-    debounceDefault();
-  }
+const onFilterChange = debounce((evt) => {
   if (evt.target.id === 'filter-random') {
-    toggleTab(evt.target);
-    debounceRandom();
+    renderPhotos(getRandomPhotos(randomPhotos, RANDOM_PHOTOS_COUNT));
   }
   if (evt.target.id === 'filter-discussed') {
-    toggleTab(evt.target);
-    debounceCommented();
+    renderPhotos(getMostCommentedPhotos(randomPhotos));
   }
-};
+  if (evt.target.id === 'filter-default') {
+    renderPhotos(randomPhotos);
+  }
+}, DEBOUNCE_DELAY);
 
-filtersFormElement.addEventListener('click', setFilterClick);
+filtersFormElement.addEventListener('click', onFilterClick);
+filtersFormElement.addEventListener('change', onFilterChange, true);

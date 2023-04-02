@@ -21,14 +21,19 @@ const createRandomIdFromRangeGenerator = (min, max) => {
   };
 };
 
-const debounce = (callback, timeoutDelay = 500) => {
+const debounce = (callback, delay = 500) => {
   let timeoutId;
 
-  return (...rest) => {
+  return (...args) => {
+
     clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+
+    timeoutId = setTimeout(() => {
+      callback(...args);
+    }, delay);
   };
 };
+
 
 const showAlert = (message) => {
   const alertContainer = document.createElement('section');

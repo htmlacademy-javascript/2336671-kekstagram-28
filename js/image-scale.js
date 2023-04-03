@@ -8,7 +8,7 @@ const MIN_SCALE = 25;
 const MAX_SCALE = 100;
 
 const setImageScale = (scaleValue) => {
-  imageUploadPreview.style.setProperty('transform', `scale(${scaleValue / 100})`);
+  imageUploadPreview.style.setProperty('transform', `scale(${scaleValue / MAX_SCALE})`);
   scaleControlValue.setAttribute('value', `${scaleValue}%`);
 };
 

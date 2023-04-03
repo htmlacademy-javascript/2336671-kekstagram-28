@@ -4,6 +4,7 @@ const commentTemplateElement = document.querySelector('.social__comment');
 const loadCommentsElement = picturePopupElement.querySelector('.social__comments-loader');
 const commentsCounterElement = picturePopupElement.querySelector('.social__comment-count');
 
+const SHIFT = 5;
 let commentsShift = 5;
 let comments = [];
 
@@ -29,7 +30,7 @@ const loadComments = () => {
 
 const updateBigPicture = (object) => {
   comments = object.comments;
-  commentsShift = 5;
+  commentsShift = SHIFT;
   picturePopupElement.querySelector('.big-picture__img img').src = object.url;
   picturePopupElement.querySelector('.social__caption').textContent = object.description;
   picturePopupElement.querySelector('.likes-count').textContent = object.likes;
@@ -37,8 +38,8 @@ const updateBigPicture = (object) => {
 };
 
 const loadNewComments = () => {
-  const sliceComments = comments.slice(commentsShift, commentsShift + 5).map(createComment);
-  commentsShift += 5;
+  const sliceComments = comments.slice(commentsShift, commentsShift + SHIFT).map(createComment);
+  commentsShift += SHIFT;
   const commentCount = commentsListElement.childElementCount + sliceComments.length;
 
   if (commentCount === comments.length) {

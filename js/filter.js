@@ -7,10 +7,10 @@ const DEBOUNCE_DELAY = 500;
 const filtersFormElement = document.querySelector('.img-filters__form');
 const filterElements = filtersFormElement.querySelectorAll('.img-filters__button');
 
-const getMostCommentedPhotos = (photos) => Array.from(photos).sort((a, b) => b.comments.length - a.comments.length);
+const getMostCommentedPhotos = (photos) => photos.sort((a, b) => b.comments.length - a.comments.length);
 
 const getRandomPhotos = (photos, count = 10) => {
-  const shuffled = Array.from(photos).sort(() => 0.5 - Math.random());
+  const shuffled = photos.sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
 };
 
@@ -29,14 +29,16 @@ const onFilterClick = (evt) => {
 };
 
 const onFilterChange = debounce((evt) => {
+  const data = structuredClone(randomPhotos);
+
   if (evt.target.id === 'filter-random') {
-    renderPhotos(getRandomPhotos(randomPhotos, RANDOM_PHOTOS_COUNT));
+    renderPhotos(getRandomPhotos(data, RANDOM_PHOTOS_COUNT));
   }
   if (evt.target.id === 'filter-discussed') {
-    renderPhotos(getMostCommentedPhotos(randomPhotos));
+    renderPhotos(getMostCommentedPhotos(data));
   }
   if (evt.target.id === 'filter-default') {
-    renderPhotos(randomPhotos);
+    renderPhotos(data);
   }
 }, DEBOUNCE_DELAY);
 
